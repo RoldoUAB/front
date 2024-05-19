@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# RoldoCHAT Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for the RoldoCHAT application, built with React. It provides the user interface for calculating optimal routes within a time restriction and ensuring return to a starting point.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [What it Does](#what-it-does)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Challenges](#challenges)
+- [Future Improvements](#future-improvements)
 
-### `npm start`
+## What it Does
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The frontend provides an intuitive user interface. It integrates with the backend to fetch and display the route details using Google Maps.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **React**: JavaScript library for building user interfaces.
+- **Axios**: HTTP client for making requests to the backend.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **Google Maps JavaScript API**: For map visualization and interaction.
+- **Material-UI**: React component library for UI design.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js 14+
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/RoldoUAB/front.git
+    cd front
+    ```
 
-### `npm run eject`
+2. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Set up environment variables:
+    ```bash
+    cp .env.example .env
+    # Edit .env file to add your Google Maps API key and backend API URL
+    ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Run the application:
+    ```bash
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Challenges
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+A significant challenge was selecting the right technologies and libraries to build a responsive and efficient user interface that integrates seamlessly with the backend and Google Maps APIs. We needed to ensure the app is intuitive and performs well even with complex route calculations.
 
-## Learn More
+## Future Improvements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Enhanced Map Interactivity**: Add more interactive features to the map, such as draggable routes and live traffic updates.
+- **Performance Optimization**: Implement performance optimizations to handle larger datasets and more complex routes.
