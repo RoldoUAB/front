@@ -12,6 +12,9 @@ export default function Header() {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <HeaderElement toPage="/home" text="Home"></HeaderElement>
+        <HeaderElement toPage="/addUser" text="Añadir Uusario"></HeaderElement>
+        <HeaderElement toPage="/userSchedule" text="Horarios"></HeaderElement>
+        <HeaderElement toPage="/calendar" text="Calendario"></HeaderElement>
       </Navbar.Collapse>
     </Navbar>
   );

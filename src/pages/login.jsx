@@ -2,7 +2,13 @@
 import React from 'react';
 import Logo from '../assets/logo.png'
 
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 const LoginPage = () => {
+
+
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen">
     <div className="w-1/2 h-screen hidden lg:block">
@@ -27,7 +33,7 @@ const LoginPage = () => {
       </div>
 
 
-      <button id = "btnLogin"  className="bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-md py-2 px-4 w-full">Entrar</button>
+      <Link to="/home" id = "btnLogin"  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-md py-2 px-4 w-full">Entrar</Link>
     </div>
     </div>
   );

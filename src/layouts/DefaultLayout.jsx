@@ -17,6 +17,8 @@ const DefaultLayout  = ({ titleInput= "", child}) => {
 
 
     );
+
+    
 }
 
 export default DefaultLayout;
