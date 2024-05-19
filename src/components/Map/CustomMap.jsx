@@ -1,7 +1,7 @@
-import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from "react";
-import { useJsApiLoader, GoogleMap, Marker, DirectionsRenderer } from "@react-google-maps/api";
+import React, { useRef, useState, forwardRef, useImperativeHandle } from "react";
+import { useJsApiLoader, GoogleMap, DirectionsRenderer } from "@react-google-maps/api";
 
-const CustomMap = forwardRef(({ initialPosition }, ref) => {
+const CustomMap = forwardRef(({}, ref) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyB-i1B6W5D4fG-pkltNgw8QZlTw8mmBAjc",
@@ -10,19 +10,34 @@ const CustomMap = forwardRef(({ initialPosition }, ref) => {
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
+  const [renderKey, setRenderKey] = useState(0);
 
   let originRef = "";
   let destinationRef = "";
 
+
+  async function cleanPaths(){
+
+    setDirectionsResponse(null);
+    setRenderKey(prevKey => prevKey + 1);
+
+  }
+
   async function calculateRoute(origin, destination) {
+    // Clear previous directions response
+
+
     originRef = `${origin[0]}, ${origin[1]}`;
     destinationRef = `${destination[0]}, ${destination[1]}`;
     console.log(originRef);
     console.log(destinationRef);
-    
+
     if (!originRef || !destinationRef) {
       return;
     }
+
+    // Ensure the directions response is set to null before calculating new route
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const directionsService = new window.google.maps.DirectionsService();
     const results = await directionsService.route({
@@ -31,20 +46,13 @@ const CustomMap = forwardRef(({ initialPosition }, ref) => {
       travelMode: window.google.maps.TravelMode.DRIVING,
     });
     setDirectionsResponse(results);
+    setRenderKey(prevKey => prevKey + 1); // Update the render key to force re-render
   }
 
   useImperativeHandle(ref, () => ({
     calculateRoute,
+    cleanPaths
   }));
-
-  useEffect(() => {
-    console.log(initialPosition[0]);
-    if (initialPosition && map) {
-      const origin = initialPosition;
-      const destination = [41.61674, 0.62218];
-      calculateRoute(origin, destination);
-    }
-  }, [initialPosition, map]);
 
   return isLoaded ? (
     <>
@@ -60,8 +68,7 @@ const CustomMap = forwardRef(({ initialPosition }, ref) => {
         }}
         onLoad={(map) => setMap(map)}
       >
-        
-        {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+        {directionsResponse && <DirectionsRenderer key={renderKey} directions={directionsResponse} />}
       </GoogleMap>
     </>
   ) : (

@@ -2,38 +2,43 @@
 import axios from 'axios';
 
 class ApiService {
-  constructor(baseURL) {
-    this.client = axios.create({
-      baseURL: baseURL,
-    });
-  }
+
 
   // GET request
-  async get(endpoint, params = {}) {
+  static async get(endpoint, params = {}) {
+    let client = axios.create({
+      baseURL: "http://localhost:8000/v1/",
+    });
     try {
-      const response = await this.client.get(endpoint, { params });
+      const queryString = Object.keys(params)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+      .join('&');
+      const response = await client.get(endpoint+"?"+queryString, );
       return response.data;
-    } catch (error) {
-      this.handleError(error);
+     
+
+    }
+    catch (error) {
+      console.log('API call error', error);
+
     }
   }
 
   // POST request
-  async post(endpoint, data) {
+  static async post(endpoint, data) {
+    let client = axios.create({
+      baseURL: "http://localhost:8000/v1/",
+    });
     try {
-      const response = await this.client.post(endpoint, data);
+      const response = await client.post(endpoint, data);
       return response.data;
     } catch (error) {
-      this.handleError(error);
+      console.log('API call error', error);
+
     }
   }
 
-  // Error handling
-  handleError(error) {
-    // Handle errors here, you can customize this to show messages, etc.
-    console.error('API call error', error);
-    throw error;
-  }
+  // Error 
 }
 
 export default ApiService;
