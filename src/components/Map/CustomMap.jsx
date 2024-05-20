@@ -4,7 +4,7 @@ import { useJsApiLoader, GoogleMap, DirectionsRenderer } from "@react-google-map
 const CustomMap = forwardRef(({}, ref) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyB-i1B6W5D4fG-pkltNgw8QZlTw8mmBAjc",
+    googleMapsApiKey: "",
     libraries: ['places']
   });
 
